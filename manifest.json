@@ -1,0 +1,38 @@
+{
+    "action": {
+       "default_icon": {
+          "128": "/ico/128.png",
+          "16": "/ico/16.png",
+          "256": "/ico/256.png",
+          "32": "/ico/32.png",
+          "48": "/ico/48.png",
+          "512": "/ico/bing.png"
+       },
+       "default_popup": "popup.html"
+    },
+    "author": "Abhishek",
+    "background": {
+       "service_worker": "js/sw.js",
+       "type": "module"
+    },
+    "content_scripts": [ {
+       "js": [ "js/content.js" ],
+       "matches": [ "*://*.bing.com/*" ],
+       "run_at": "document_start"
+    } ],
+    "description": "Reward collector",
+    "host_permissions": [ "\u003Call_urls>" ],
+    "icons": {
+       "128": "/ico/128.png",
+       "16": "/ico/16.png",
+       "256": "/ico/256.png",
+       "32": "/ico/32.png",
+       "48": "/ico/48.png",
+       "512": "/ico/bing.png"
+    },
+    "manifest_version": 3,
+    "name": "Rewards Collector",
+    "permissions": [ "debugger", "alarms", "tabs", "storage", "webRequest", "webNavigation", "browsingData" ],
+    "version": "0.1.0"
+ }
+ 
