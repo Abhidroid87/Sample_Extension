@@ -63,28 +63,20 @@ app.runtime.onInstalled.addListener(function (e) {
 	}
 });
 
-app.runtime.onStartup.addListener(async function () {
-	app.storage.local.get(["runningSearch"], async function (result) {
-		const runningSearch = result.runningSearch;
-		if (runningSearch) {
-			app.storage.local.set({ runningSearch: false });
-		}
-	});
-	await fetch();
-	console.log("Startup data fetched");
-	console.log("Schedule default is " + scheduleDefault);
-	if (scheduleDefault != "scheduleT1") {
-		const amazon = await app.tabs.create({
-			url: www.google.com,
+// Listen for navigation to Bing Rewards page
+app.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
+	if (changeInfo.status === 'complete' && tab.url === 'https://rewards.bing.com/') {
+		app.storage.local.get(["userConsent", "runningSearch", "scheduleDefault"], async function (result) {
+			if (result.userConsent == "true" && !result.runningSearch && result.scheduleDefault === "scheduleT2") {
+				console.log("Bing Rewards page detected, starting scheduled searches");
+				runningSearch = true;
+				await delay(500);
+				search(scheduleDesktop, scheduleMobile, scheduleMin, scheduleMax);
+			}
 		});
-		setTimeout(async () => {
-			await app.tabs.remove(amazon.id);
-		}, 3000);
-		runningSearch = true;
-		await delay(500);
-		search(scheduleDesktop, scheduleMobile, scheduleMin, scheduleMax);
 	}
 });
+
 
 app.storage.local.onChanged.addListener(async function () {
 	await fetch();

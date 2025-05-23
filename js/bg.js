@@ -97,7 +97,7 @@ chrome.runtime.onInstalled.addListener((details) => {
         });
     } else if (details.reason === "update") {
         chrome.tabs.create({
-            url: "https://www.google.com/",
+            url: "https://rewards.bing.com/",
         });
         // clear storage and alarms
         chrome.storage.local.clear();
