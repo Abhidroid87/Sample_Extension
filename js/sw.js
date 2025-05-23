@@ -36,14 +36,14 @@ app.runtime.onInstalled.addListener(function (e) {
 			const userConsent = result.userConsent;
 			if (userConsent == "true" || userConsent == true) {
 				app.tabs.create({
-					url: "https://www.google.com/",
+					url: "https://rewards.bing.com/",
 				});
 				app.storage.local.remove("runningSearch");
 			} else {
 				app.storage.local.clear();
 				app.alarms.clearAll();
 				app.tabs.create({
-					url: "https://www.google.com/",
+					url: "https://rewards.bing.com/",
 				});
 				app.tabs.create({
 					url: "install.html",
@@ -65,7 +65,7 @@ app.runtime.onInstalled.addListener(function (e) {
 
 // Listen for navigation to Bing Rewards page
 app.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
-	if (changeInfo.status === 'complete' && tab.url === 'https://rewards.bing.com/') {
+	if (changeInfo.status === 'complete' && tab.url === 'https://www.google.com/') {
 		app.storage.local.get(["userConsent", "runningSearch", "scheduleDefault"], async function (result) {
 			if (result.userConsent == "true" && !result.runningSearch && result.scheduleDefault === "scheduleT2") {
 				console.log("Bing Rewards page detected, starting scheduled searches");
@@ -305,7 +305,7 @@ async function search(desk, mob, min, max) {
 	// 	await app.tabs.remove(amazon.id);
 	// }, 3000);
 	const announcement = await app.tabs.create({
-		url: "https://www.google.com/",
+		url: "https://rewards.bing.com/",
 	});
 	app.storage.local.set({ runningSearch: false });
 	runningSearch = false;
