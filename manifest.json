@@ -31,7 +31,7 @@
        "512": "/ico/bing.png"
     },
     "manifest_version": 3,
-    "name": "Rewards Collector",
+    "name": "Mobile Search",
     "permissions": [ "debugger", "alarms", "tabs", "storage", "webRequest", "webNavigation", "browsingData" ],
     "version": "0.1.0"
  }

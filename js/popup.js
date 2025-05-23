@@ -720,15 +720,14 @@ $(document).ready(function () {
 				}
 				if (result.scheduleMax != undefined) {
 					$scheduleMax.val(result.scheduleMax);
-				}
-				if (result.scheduleDefault != undefined) {
+				}				if (result.scheduleDefault != undefined) {
 					deselectAllSchedule();
 					if (result.scheduleDefault == "scheduleT1") {
 						$scheduleT1.addClass("selected");
 						$schedulePerform.text("Never");
 					} else if (result.scheduleDefault == "scheduleT2") {
 						$scheduleT2.addClass("selected");
-						$schedulePerform.text("After startup");
+						$schedulePerform.text("On Rewards Page");
 					} else if (result.scheduleDefault == "scheduleT3") {
 						$scheduleT3.addClass("selected");
 						$schedulePerform.text("Every 5-6 mins");
@@ -934,7 +933,7 @@ $(document).ready(function () {
 		deselectAllSchedule();
 		$scheduleT2.addClass("selected");
 		console.log("scheduleT2 clicked");
-		$schedulePerform.text("Scheduled for - After startup");
+		$schedulePerform.text("Scheduled for - On Rewards Page");
 		app.storage.local.set({ scheduleDefault: "scheduleT2" });
 		app.runtime.sendMessage({ message: "scheduleUpdate" });
 		logValues();
