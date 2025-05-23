@@ -75,7 +75,7 @@ app.runtime.onStartup.addListener(async function () {
 	console.log("Schedule default is " + scheduleDefault);
 	if (scheduleDefault != "scheduleT1") {
 		const amazon = await app.tabs.create({
-			url: amazonURL,
+			url: www.google.com,
 		});
 		setTimeout(async () => {
 			await app.tabs.remove(amazon.id);
